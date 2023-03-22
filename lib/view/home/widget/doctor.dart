@@ -1,8 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:capstone/core/theme/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../view_model/home_view_model.dart';
+import '../../../view_model/home_view_model.dart';
 
 class DoctorWidget extends ConsumerStatefulWidget {
   const DoctorWidget({super.key});
@@ -25,16 +26,27 @@ class _DoctorWidgetState extends ConsumerState<DoctorWidget> {
       itemCount: ref.watch(homeVM).data.length,
       itemBuilder: (context, index) {
         final item = ref.watch(homeVM).data[index];
-        return ListTile(
-          trailing: CircleAvatar(
-            child: CachedNetworkImage(
-              imageUrl: item.image ?? "",
-              placeholder: (context, url) => CircularProgressIndicator(),
-              errorWidget: (context, url, error) => Icon(Icons.error),
+        return Card(
+          elevation: 4,
+          shadowColor: primaryColor,
+          child: ListTile(
+            trailing: CircleAvatar(
+              child: CachedNetworkImage(
+                imageUrl: item.image ?? "",
+                placeholder: (context, url) =>
+                    const Center(child: CircularProgressIndicator()),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+              ),
+            ),
+            title: Text(item.name ?? "",
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                )),
+            subtitle: Text(
+              item.email ?? "",
             ),
           ),
-          title: Text(item.name ?? ""),
-          subtitle: Text(item.email ?? ""),
         );
       },
     );

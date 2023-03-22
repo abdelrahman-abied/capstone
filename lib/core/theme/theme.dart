@@ -7,7 +7,7 @@ class AppTheme {
     primarySwatch: primarySwatchColor,
     visualDensity: VisualDensity.adaptivePlatformDensity,
     scaffoldBackgroundColor: whiteColor,
-    fontFamily: "Tajawal",
+    fontFamily: "Schyler",
     scrollbarTheme: ScrollbarThemeData(
       interactive: true,
       thickness: MaterialStateProperty.all(5.0),

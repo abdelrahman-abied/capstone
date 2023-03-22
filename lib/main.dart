@@ -10,6 +10,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
 
-  // CacheHelper.clearAll();
+  CacheHelper.clearAll();
   runApp(const ProviderScope(child: MyApp()));
 }

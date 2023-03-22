@@ -1,9 +1,9 @@
 import 'package:capstone/core/theme/theme.dart';
 import 'package:capstone/core/utils/app_routes.dart';
 import 'package:capstone/core/utils/cache_helper.dart';
+import 'package:capstone/view/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../base_page.dart';
 import '../view/home/home_view.dart';
 import '../view/login_view.dart';
 import 'constants/constants.dart';
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String isLogged = CacheHelper.getPrefs(key: Constants.tokenPrefKey);
+    // final String isLogged = CacheHelper.getPrefs(key: Constants.tokenPrefKey);
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         return supportedLocales.first;
       },
 
-      initialRoute: isLogged.isNotEmpty ? HomeView.route : LoginScreen.route,
+      initialRoute: SplashView.route,
       routes: appRoutes(context),
     );
   }

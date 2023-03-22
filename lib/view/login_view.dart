@@ -4,7 +4,6 @@ import 'package:capstone/view/home/home_view.dart';
 import 'package:capstone/view/register.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../base_page.dart';
 import '../core/constants/constants.dart';
 import '../core/constants/status.dart';
 import '../core/localization/localization.dart';

@@ -61,6 +61,7 @@ dependencies:
   youtube_player_iframe: ^4.0.4
   youtube_explode_dart: ^1.12.4
   font_awesome_flutter: ^10.4.0
+  agora_rtm: ^1.5.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -75,16 +76,17 @@ dev_dependencies:
   flutter_gen_runner: ^5.1.0+1
   flutter_launcher_icons: ^0.10.0
 flutter_icons:
-  android: false
+  android: true
   ios: true
   # for ios
-  # remove_alpha_ios: true
+  remove_alpha_ios: true
   # image_path: "assets/images/app_logo_foreground.png"
   # for android
+ 
   image_path: "assets/images/app_logo.png"
   min_sdk_android: 21
-  adaptive_icon_background: "#ffffff"
-  adaptive_icon_foreground : "assets/images/app_logo_foreground.png"   
+  adaptive_icon_background: "#FE6244"
+  adaptive_icon_foreground : "assets/images/app_logo.png"   
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

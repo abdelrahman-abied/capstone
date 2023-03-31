@@ -1,4 +1,8 @@
 PODS:
+  - agora_rtm (1.5.0):
+    - AgoraRtm_iOS (= 1.5.1)
+    - Flutter
+  - AgoraRtm_iOS (1.5.1)
   - Flutter (1.0.0)
   - flutter_inappwebview (0.0.1):
     - Flutter
@@ -34,6 +38,7 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
+  - agora_rtm (from `.symlinks/plugins/agora_rtm/ios`)
   - Flutter (from `Flutter`)
   - flutter_inappwebview (from `.symlinks/plugins/flutter_inappwebview/ios`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
@@ -47,11 +52,14 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - AgoraRtm_iOS
     - FMDB
     - OrderedSet
     - Toast
 
 EXTERNAL SOURCES:
+  agora_rtm:
+    :path: ".symlinks/plugins/agora_rtm/ios"
   Flutter:
     :path: Flutter
   flutter_inappwebview:
@@ -74,6 +82,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/webview_flutter_wkwebview/ios"
 
 SPEC CHECKSUMS:
+  agora_rtm: fe254f84e056f8dbcf878a2a20b9f46aa9e7d0dd
+  AgoraRtm_iOS: 595a9fa33a409831e6183396ea8f8bc563918403
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   flutter_inappwebview: bfd58618f49dc62f2676de690fc6dcda1d6c3721
   fluttertoast: eb263d302cc92e04176c053d2385237e9f43fad0

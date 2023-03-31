@@ -35,144 +35,148 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         backgroundColor: whiteColor,
         elevation: 0,
       ),
-      body: Form(
-        key: _formKey,
-        // autovalidateMode: AutovalidateMode.onUserInteraction,
-        child: Column(
-          // mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              height: size.height / 5,
-              decoration: BoxDecoration(
-                color: primaryColor,
-                borderRadius: BorderRadius.circular(40),
+      body: SingleChildScrollView(
+        child: Form(
+          key: _formKey,
+          // autovalidateMode: AutovalidateMode.onUserInteraction,
+          child: Column(
+            // mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                height: size.height / 5,
+                decoration: BoxDecoration(
+                  color: primaryColor,
+                  borderRadius: BorderRadius.circular(40),
+                ),
+                child: Image.asset(
+                  'assets/images/app_logo.png',
+                ),
               ),
-              child: Image.asset(
-                'assets/images/app_logo.png',
-              ),
-            ),
-            SizedBox(height: 10),
-            DefaultFormField(
-              controller: _emailController,
-              validateMode: AutovalidateMode.onUserInteraction,
-              hint: getString(context).phoneNumber,
-              autofocus: true,
-              focusNode: emailNode,
-              keyboardType: TextInputType.emailAddress,
-              onFieldSubmitted: (term) {
-                FocusScope.of(context).requestFocus(passwordNode);
-              },
-              textInputAction: TextInputAction.next,
-              validatorFunction: (value) {
-                if (value!.isEmpty) {
-                  return getString(context).emptyEmail;
-                }
-                return null;
-              },
-              prefixIcon: Icons.phone,
-            ),
-            DefaultFormField(
-              controller: _passwordController,
-              focusNode: passwordNode,
-              validateMode: AutovalidateMode.onUserInteraction,
-              hint: getString(context).password,
-              onFieldSubmitted: (term) {
-                _submit();
-              },
-              validatorFunction: (value) {
-                if (value!.isEmpty) {
-                  return getString(context).emptyPassword;
-                } else {
+              SizedBox(height: 10),
+              DefaultFormField(
+                controller: _emailController,
+                validateMode: AutovalidateMode.onUserInteraction,
+                hint: getString(context).phoneNumber,
+                autofocus: true,
+                focusNode: emailNode,
+                keyboardType: TextInputType.emailAddress,
+                onFieldSubmitted: (term) {
+                  FocusScope.of(context).requestFocus(passwordNode);
+                },
+                textInputAction: TextInputAction.next,
+                validatorFunction: (value) {
+                  if (value!.isEmpty) {
+                    return getString(context).emptyEmail;
+                  }
                   return null;
-                }
-              },
-              isPassword: isPassword,
-              suffixIcon: isPassword ? Icons.visibility : Icons.visibility_off,
-              suffixPressed: () {
-                setState(() {
-                  isPassword = !isPassword;
-                });
-              },
-              prefixIcon: Icons.lock,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 12),
-              child: Row(
-                // mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    getString(context).accountNotExists,
-                    style: const TextStyle(
-                        fontSize: 17.0,
-                        color: primaryColor,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(width: 5.0),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => RegisterView(),
-                        ),
-                      );
-                    },
-                    child: Text(
-                      getString(context).createAccount,
+                },
+                prefixIcon: Icons.phone,
+              ),
+              DefaultFormField(
+                controller: _passwordController,
+                focusNode: passwordNode,
+                validateMode: AutovalidateMode.onUserInteraction,
+                hint: getString(context).password,
+                onFieldSubmitted: (term) {
+                  _submit();
+                },
+                validatorFunction: (value) {
+                  if (value!.isEmpty) {
+                    return getString(context).emptyPassword;
+                  } else {
+                    return null;
+                  }
+                },
+                isPassword: isPassword,
+                suffixIcon:
+                    isPassword ? Icons.visibility : Icons.visibility_off,
+                suffixPressed: () {
+                  setState(() {
+                    isPassword = !isPassword;
+                  });
+                },
+                prefixIcon: Icons.lock,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 12),
+                child: Row(
+                  // mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      getString(context).accountNotExists,
                       style: const TextStyle(
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
-                        color: secondaryColor,
+                          fontSize: 17.0,
+                          color: primaryColor,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(width: 5.0),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => RegisterView(),
+                          ),
+                        );
+                      },
+                      child: Text(
+                        getString(context).createAccount,
+                        style: const TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold,
+                          color: secondaryColor,
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              alignment: Alignment.center,
-              padding: const EdgeInsets.all(16),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  textStyle: const TextStyle(fontSize: 24),
-                  minimumSize: const Size.fromHeight(50),
-                  foregroundColor: primaryColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12), // <-- Radius
-                  ),
+                  ],
                 ),
-                onPressed: () async {
-                  if (isLoading) {
-                    return;
-                  }
-
-                  // await Future.delayed(const Duration(seconds: 3));
-                  _submit();
-                  // setState(() => isLoading = false);
-                },
-                child: isLoading
-                    ? Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const CircularProgressIndicator(color: Colors.white),
-                          const SizedBox(width: 16),
-                          Text(
-                            getString(context).isLoading,
-                            style: const TextStyle(color: whiteColor),
-                          ),
-                        ],
-                      )
-                    : Text(
-                        getString(context).login,
-                        style: const TextStyle(color: whiteColor),
-                      ),
               ),
-            ),
-          ],
+              Container(
+                alignment: Alignment.center,
+                padding: const EdgeInsets.all(16),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    textStyle: const TextStyle(fontSize: 24),
+                    minimumSize: const Size.fromHeight(50),
+                    foregroundColor: primaryColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12), // <-- Radius
+                    ),
+                  ),
+                  onPressed: () async {
+                    if (isLoading) {
+                      return;
+                    }
+
+                    // await Future.delayed(const Duration(seconds: 3));
+                    _submit();
+                    // setState(() => isLoading = false);
+                  },
+                  child: isLoading
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const CircularProgressIndicator(
+                                color: Colors.white),
+                            const SizedBox(width: 16),
+                            Text(
+                              getString(context).isLoading,
+                              style: const TextStyle(color: whiteColor),
+                            ),
+                          ],
+                        )
+                      : Text(
+                          getString(context).login,
+                          style: const TextStyle(color: whiteColor),
+                        ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

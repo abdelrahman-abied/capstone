@@ -101,7 +101,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                       textInputAction: TextInputAction.next,
                       validatorFunction: (value) {
                         if (value!.isEmpty) {
-                          return getString(context).emptyEmail;
+                          return getString(context).emptyName;
                         }
                         return null;
                       },
@@ -160,7 +160,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                         textInputAction: TextInputAction.next,
                         validatorFunction: (value) {
                           if (value!.isEmpty) {
-                            return getString(context).emptyPhoneNumber;
+                            return getString(context).emptySpectialization;
                           }
                           return null;
                         },

@@ -17,8 +17,7 @@ class SplashView extends ConsumerStatefulWidget {
 }
 
 class _SplashViewState extends ConsumerState<SplashView> {
-  String _userCardData = "";
-  String _baseUrl = "";
+ 
   bool policy = false;
   Timer? timer;
   final String isLogged =
@@ -26,7 +25,7 @@ class _SplashViewState extends ConsumerState<SplashView> {
 
   @override
   void initState() {
-    timer = Timer(const Duration(seconds: 4), () {
+    timer = Timer(const Duration(seconds: 5), () {
       Navigator.pushNamedAndRemoveUntil(
         context,
         isLogged.isNotEmpty ? HomeView.route : LoginScreen.route,
@@ -50,7 +49,7 @@ class _SplashViewState extends ConsumerState<SplashView> {
             image: DecorationImage(
               fit: BoxFit.fill,
               image: AssetImage(
-                "/Users/abdo/Desktop/projects/capstone/assets/images/background.jpg",
+                "assets/images/background.jpg",
               ),
             ),
           ),
@@ -58,15 +57,24 @@ class _SplashViewState extends ConsumerState<SplashView> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                height: size.height / 5,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(40),
-                ),
-                child: Image.asset(
-                  'assets/images/app_logo.png',
-                ),
-              )
+              TweenAnimationBuilder<double>(
+                  tween: Tween<double>(begin: 0.0, end: 1.0),
+                  curve: Curves.ease,
+                  duration: const Duration(seconds: 3),
+                  builder:
+                      (BuildContext context, double opacity, Widget? child) {
+                    return Opacity(
+                        opacity: opacity,
+                        child: Container(
+                          height: size.height / 5,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(40),
+                          ),
+                          child: Image.asset(
+                            'assets/images/app_logo.png',
+                          ),
+                        ));
+                  })
             ],
           ),
         ),

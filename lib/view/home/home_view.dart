@@ -1,11 +1,8 @@
 import 'package:capstone/core/constants/constants.dart';
 import 'package:capstone/core/theme/style.dart';
 import 'package:capstone/core/utils/cache_helper.dart';
-import 'package:capstone/core/utils/utilities.dart';
-import 'package:capstone/view/home/widget/doctor.dart';
-import 'package:capstone/view/home/widget/exercises.dart';
 import 'package:capstone/view/home/widget/hospital.dart';
-import 'package:capstone/view/home/widget/video_exercises.dart';
+import 'package:capstone/view/home/widget/user_type.dart';
 import 'package:capstone/view/home/widget/youtube_iframe.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,6 +11,7 @@ import '../../core/localization/localization.dart';
 import '../../model/model/auterization.dart';
 import '../../view_model/home_view_model.dart';
 import '../login_view.dart';
+import 'chat_page.dart';
 
 class HomeView extends ConsumerStatefulWidget {
   static const String route = "home";
@@ -29,19 +27,17 @@ class _HomeViewState extends ConsumerState<HomeView> {
   void initState() {
     super.initState();
     scrollController.addListener(() {
-      if (scrollController.position.maxScrollExtent ==
-          scrollController.offset) {
+      if (scrollController.position.maxScrollExtent == scrollController.offset) {
         ref.read(homeVM);
       }
     });
   }
 
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   List<Widget> widgetOptions = [
-    DoctorWidget(),
-    YoutubePlayerDemo(title: "video"),
+    UserType(),
+    ChatView(),
     YoutubePlayerDemo(title: "video"),
     HospitalWidget(),
   ];
@@ -58,10 +54,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
       // backgroundColor: blackColor,
       appBar: AppBar(
         title: Text(
-            autherizationFromMap(CacheHelper.getPrefs(key: Constants.userData))
-                    .data
-                    ?.name ??
-                ""),
+            autherizationFromMap(CacheHelper.getPrefs(key: Constants.userData)).data?.name ?? ""),
         leading: IconButton(
           icon: Icon(Icons.logout),
           onPressed: () {

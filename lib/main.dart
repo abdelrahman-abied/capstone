@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'core/constants/constants.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'core/my_app.dart';
 import 'core/utils/cache_helper.dart';
 
@@ -9,7 +9,11 @@ import 'core/utils/cache_helper.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
-
-  CacheHelper.clearAll();
+  _handleCameraAndMic();
+  // CacheHelper.clearAll();
   runApp(const ProviderScope(child: MyApp()));
+}
+
+_handleCameraAndMic() async {
+  await [Permission.camera, Permission.microphone].request();
 }

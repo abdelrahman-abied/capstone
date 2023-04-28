@@ -35,9 +35,14 @@ Future<LoginStatus> loginService(String phone, String password) async {
             key: Constants.tokenPrefKey,
             value: data.data?.apiToken.toString() ?? "");
         CacheHelper.savePrefs(
-          key: Constants.userData,
-          value: response.body,
+          key: Constants.type,
+          value: autherizationFromMap(response.body).data?.type ??
+              Constants.doctor,
         );
+        CacheHelper.savePrefs(key: Constants.userData, value: response.body);
+        CacheHelper.savePrefs(
+            key: Constants.id,
+            value: autherizationFromMap(response.body).data?.id);
 
         return LoginStatus.success;
       } else {

@@ -8,6 +8,7 @@ Autherization autherizationFromMap(String str) =>
     Autherization.fromJson(json.decode(str));
 
 String autherizationToMap(Autherization data) => json.encode(data.toJson());
+
 class Autherization {
   int? status;
   String? message;
@@ -18,13 +19,13 @@ class Autherization {
   Autherization.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    data['message'] = this.message;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['status'] = status;
+    data['message'] = message;
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
@@ -33,7 +34,7 @@ class Autherization {
 }
 
 class Data {
-  int? id;
+  late int id;
   String? name;
   String? email;
   String? phone;
@@ -44,7 +45,7 @@ class Data {
   String? createdAt;
 
   Data(
-      {this.id,
+      {required this.id,
       this.name,
       this.email,
       this.phone,
@@ -67,16 +68,16 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['email'] = this.email;
-    data['phone'] = this.phone;
-    data['is_accept'] = this.isAccept;
-    data['type'] = this.type;
-    data['api_token'] = this.apiToken;
-    data['image'] = this.image;
-    data['created_at'] = this.createdAt;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['id'] = id;
+    data['name'] = name;
+    data['email'] = email;
+    data['phone'] = phone;
+    data['is_accept'] = isAccept;
+    data['type'] = type;
+    data['api_token'] = apiToken;
+    data['image'] = image;
+    data['created_at'] = createdAt;
     return data;
   }
 }

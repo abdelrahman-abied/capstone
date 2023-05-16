@@ -31,12 +31,18 @@ class _VideoViewState extends ConsumerState<VideoView> {
               isLoading = false;
             });
           },
-          onWebResourceError: (WebResourceError error) {
-            Log.e(error.toString());
+          onWebResourceError: (WebResourceError error) {},
+          onNavigationRequest: (NavigationRequest request) {
+            if (request.url.startsWith('https://ibrahimcrespo.github.io/video/')) {
+              return NavigationDecision.prevent;
+            }
+            return NavigationDecision.navigate;
           },
         ),
       )
-      ..loadFlutterAsset('assets/group_video_chat/index.html');
+      ..loadRequest(
+        Uri.parse('https://ibrahimcrespo.github.io/video/'),
+      );
   }
 
   @override
